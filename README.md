@@ -1,0 +1,2 @@
+# Museo-virtual-SC
+.
