@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espacio del Arte - Lumina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --guinda: #6b2737;
+      --crema: #f5efe6;
+      --beige: #e3d9c6;
+      --rosa: #c98f94;
+      --texto: #4a3236;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--crema); color: var(--texto); font-family: Georgia, serif; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Cinzel', Georgia, serif; color: var(--guinda); text-transform: uppercase; margin: 0 0 12px; }
+
+    /* MENÚ */
+    .barra { background: var(--guinda); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 6vw; flex-wrap: wrap; gap: 10px; }
+    .logo { font-family: 'Cinzel', Georgia, serif; font-size: 1.2rem; font-weight: 700; }
+    .logo small { font-family: Georgia, serif; font-size: 0.75rem; font-weight: normal; margin-left: 8px; }
+    .barra nav a { color: #fff; text-decoration: none; margin-left: 8px; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
+    .barra nav a:hover { background: rgba(255,255,255,0.15); }
+    .barra nav a.activo { background: var(--rosa); color: var(--guinda); }
+
+    /* PORTADA DE LA SALA */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 60px 6vw; }
+    .hero h1 { font-size: 2.4rem; }
+    .boton { display: inline-block; background: var(--guinda); color: #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; }
+    .boton:hover { opacity: 0.85; }
+
+    /* RECUADROS DE IMAGEN (se reemplazan por <img>) */
+    .imagen { width: 100%; aspect-ratio: 4 / 3; border: 2px solid var(--rosa); border-radius: 6px; overflow: hidden;
+      background:
+        linear-gradient(to top right, transparent calc(50% - 1px), var(--rosa) 50%, transparent calc(50% + 1px)),
+        linear-gradient(to bottom right, transparent calc(50% - 1px), var(--rosa) 50%, transparent calc(50% + 1px)),
+        var(--beige); }
+    .imagen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* COLECCIÓN */
+    .coleccion { padding: 20px 6vw 60px; }
+    .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
+    .tarjeta h3 { font-size: 1.05rem; margin-top: 12px; }
+    .credito { font-size: 0.85rem; color: #8a7075; }
+
+    footer { background: var(--guinda); color: #fff; text-align: center; padding: 24px; font-size: 0.9rem; }
+
+    @media (max-width: 700px) { .hero { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- MENÚ (debe ser igual en todas las páginas del museo) -->
+  <header class="barra">
+    <div class="logo">Lumina <small>Museo de las Artes</small></div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="musica.html">Música</a>
+      <a href="espacio-del-arte.html" class="activo">Arte</a>
+      <a href="moda.html">Moda</a>
+      <a href="cine.html">Cine</a>
+      <a href="redes.html">Redes</a>
+      <a href="nosotros.html">Nosotros</a>
+    </nav>
+  </header>
+
+  <!-- PORTADA DE LA SALA -->
+  <section class="hero">
+    <div>
+      <h1>Espacio del Arte</h1>
+      <p>Escultura, danza y artesanía del siglo XXI. Escribe aquí tu frase corta de bienvenida.</p>
+      <a href="#coleccion" class="boton">Entrar a la sala</a>
+    </div>
+    <div class="imagen">
+      <!-- Para poner una imagen, quita las flechas:
+      <img src="imagenes/portada-arte.jpg" alt="Descripción de la imagen">
+      -->
+    </div>
+  </section>
+
+  <!-- COLECCIÓN -->
+  <section class="coleccion" id="coleccion">
+    <h2>Colección</h2>
+
+    <div class="tarjetas">
+
+      <article class="tarjeta">
+        <div class="imagen"></div>
+        <h3>Escultura</h3>
+        <p>Escribe aquí una introducción con tus palabras. Menciona artistas como Anish Kapoor o Antony Gormley.</p>
+        <p class="credito">Fuente: (escribe la fuente)</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="imagen"></div>
+        <h3>Danza</h3>
+        <p>Escribe aquí una introducción. Menciona artistas como Akram Khan o el Ballet Nacional de Panamá.</p>
+        <p class="credito">Fuente: (escribe la fuente)</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="imagen"></div>
+        <h3>Artesanía nacional</h3>
+        <p>Escribe aquí una introducción. Habla de las molas guna, el sombrero pintao u otras artesanías.</p>
+        <p class="credito">Fuente: (escribe la fuente)</p>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>Lumina · Museo de las Artes</footer>
+
+</body>
+</html>
