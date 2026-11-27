@@ -68,7 +68,10 @@
     @keyframes toque { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-4px, -6px); } }
 
     /* PANEL DE INFORMACIÓN */
-    .panel { background: #fff; border: 2px solid var(--rosa); border-radius: 8px; padding: 24px; margin-top: 16px; }
+    .panel { position: relative; background: #fff; border: 2px solid var(--rosa); border-radius: 8px; padding: 24px; margin-top: 16px; }
+    .panel h3 { padding-right: 110px; }
+    .cerrar { position: absolute; top: 14px; right: 14px; background: var(--guinda); color: #fff; border: none; border-radius: 20px; padding: 6px 14px; font-family: Georgia, serif; font-size: 0.85rem; cursor: pointer; }
+    .cerrar:hover { opacity: 0.85; }
     .panel h4 { font-family: 'Cinzel', Georgia, serif; color: var(--guinda); margin: 18px 0 4px; text-transform: uppercase; }
     .panel .aviso { margin: 0; color: #8a7075; font-style: italic; }
     .obras { display: flex; gap: 24px; flex-wrap: wrap; }
@@ -592,11 +595,18 @@
         t.addEventListener('click', function () {
           var ang = anguloDe(i, objetivo);
           if (Math.abs(ang) < 1) {
-            panel.innerHTML = t.querySelector('.detalle').innerHTML;  // la del frente muestra su info
+                        panel.innerHTML = '<button class="cerrar" type="button" aria-label="Cerrar información">✕ Cerrar</button>' + t.querySelector('.detalle').innerHTML;  // la del frente muestra su info
           } else {
             girarA(objetivo - ang);                                   // las demás giran hasta el frente
           }
         });
+      });
+
+            // Botón "Cerrar": vuelve al mensaje inicial del panel
+      panel.addEventListener('click', function (e) {
+        if (e.target.closest('.cerrar')) {
+          panel.innerHTML = '<p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p>';
+        }
       });
 
       window.addEventListener('resize', function () { dibujar(giro); });
