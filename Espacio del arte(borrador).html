@@ -56,6 +56,7 @@
       box-shadow: 0 18px 35px rgba(60,20,30,0.28); animation: flotar 4s ease-in-out infinite; }
     .artista:nth-child(2) .flota { animation-delay: -1.3s; }
     .artista:nth-child(3) .flota { animation-delay: -2.6s; }
+    .artista:nth-child(4) .flota { animation-delay: -3.2s; }
     @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
     .flota .imagen { aspect-ratio: 4 / 5; }
@@ -75,6 +76,11 @@
     .obras figcaption { font-size: 0.9rem; margin-top: 6px; }
 
     footer { background: var(--guinda); color: #fff; text-align: center; padding: 24px; font-size: 0.9rem; margin-top: 40px; }
+
+    /* FUENTES */
+    .fuentes { padding: 30px 6vw 10px; max-width: 1000px; margin: 0 auto; }
+    .fuentes p { margin: 6px 0; font-size: 0.9rem; }
+    .fuentes a { color: var(--guinda); }
 
     @media (max-width: 700px) {
       .hero { grid-template-columns: 1fr; }
@@ -120,60 +126,88 @@
 
         <article class="artista">
           <div class="flota">
-            <div class="imagen"></div>
+            <div class="imagen"><img src="imagenes/banksy-1.jpg" alt="Banksy" onerror="this.remove()"></div>
             <span class="etiqueta">Reino Unido</span>
             <h3>Banksy</h3>
           </div>
           <div class="detalle" hidden>
             <h3>Banksy</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es Banksy.</p>
+            <p>Artista callejero británico que usa un seudónimo. Su identidad real nunca se ha confirmado; se cree que nació en Bristol o cerca de allí, hacia 1974.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué tipo de obras crea.</p>
+            <p>Se hizo famoso a finales de los años 90 con plantillas (stencils) llenas de ironía y crítica social. En 2005 colgó obras suyas, disfrazado, en museos como el Met de Nueva York y la Tate Britain de Londres.</p>
             <h4>Obras</h4>
             <div class="obras">
-              <figure><div class="imagen"></div><figcaption>Girl with Balloon</figcaption></figure>
-              <figure><div class="imagen"></div><figcaption>Nombre de otra obra</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/banksy-1.jpg" alt="Dismaland (2015), parque temático crítico en Reino Unido" onerror="this.remove()"></div><figcaption>Dismaland (2015), parque temático crítico en Reino Unido</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/banksy-2.jpg" alt="Better Out Than In (Nueva York, 2013)" onerror="this.remove()"></div><figcaption>Better Out Than In (Nueva York, 2013)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/banksy-3.jpg" alt="Girl with Balloon (hacia 2002)" onerror="this.remove()"></div><figcaption>Girl with Balloon (hacia 2002)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/banksy-4.jpg" alt="Love Is in the Bin (2018), obra parcialmente destruida en una subasta" onerror="this.remove()"></div><figcaption>Love Is in the Bin (2018), obra parcialmente destruida en una subasta</figcaption></figure>
             </div>
           </div>
         </article>
 
         <article class="artista">
           <div class="flota">
-            <div class="imagen"></div>
+            <div class="imagen"><img src="imagenes/murakami-1.jpg" alt="Takashi Murakami" onerror="this.remove()"></div>
             <span class="etiqueta">Japón</span>
             <h3>Takashi Murakami</h3>
           </div>
           <div class="detalle" hidden>
             <h3>Takashi Murakami</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es Takashi Murakami.</p>
+            <p>Artista japonés nacido el 1 de febrero de 1962 en Tokio. Fundó Kaikai Kiki, una empresa que produce y representa a artistas.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué tipo de obras crea.</p>
+            <p>Es el creador del estilo Superflat, que mezcla el arte tradicional japonés con la cultura pop, como el manga y el anime. También ha colaborado con Louis Vuitton y con músicos como Kanye West.</p>
             <h4>Obras</h4>
             <div class="obras">
-              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
-              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/murakami-1.jpg" alt="Mr. DOB (personaje)" onerror="this.remove()"></div><figcaption>Mr. DOB (personaje)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/murakami-2.jpg" alt="And Then, And Then And Then And Then And Then (1996–1997)" onerror="this.remove()"></div><figcaption>And Then, And Then And Then And Then And Then (1996–1997)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/murakami-3.jpg" alt="Flowers (flores sonrientes)" onerror="this.remove()"></div><figcaption>Flowers (flores sonrientes)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/murakami-4.jpg" alt="Tan Tan Bo Puking – a.k.a. Gero Tan (2002)" onerror="this.remove()"></div><figcaption>Tan Tan Bo Puking – a.k.a. Gero Tan (2002)</figcaption></figure>
             </div>
           </div>
         </article>
 
         <article class="artista">
           <div class="flota">
-            <div class="imagen"></div>
+            <div class="imagen"><img src="imagenes/beeple-1.jpg" alt="Beeple" onerror="this.remove()"></div>
             <span class="etiqueta">Estados Unidos</span>
             <h3>Beeple</h3>
           </div>
           <div class="detalle" hidden>
             <h3>Beeple</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es Beeple.</p>
+            <p>Su nombre real es Mike Winkelmann. Es un diseñador gráfico estadounidense y uno de los artistas digitales más conocidos del mundo.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué tipo de obras crea (arte digital).</p>
+            <p>Creó y publicó una imagen digital cada día, desde el 1 de mayo de 2007 hasta el 7 de enero de 2021. Ha trabajado con marcas y artistas como Louis Vuitton, Katy Perry y Nike.</p>
             <h4>Obras</h4>
             <div class="obras">
-              <figure><div class="imagen"></div><figcaption>Everydays: The First 5000 Days</figcaption></figure>
-              <figure><div class="imagen"></div><figcaption>Nombre de otra obra</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/beeple-1.jpg" alt="Everydays: The First 5000 Days (2021), vendida en Christie's por unos 69,3 millones de dólares" onerror="this.remove()"></div><figcaption>Everydays: The First 5000 Days (2021), vendida en Christie's por unos 69,3 millones de dólares</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/beeple-2.jpg" alt="El primer Everyday (1 de mayo de 2007)" onerror="this.remove()"></div><figcaption>El primer Everyday (1 de mayo de 2007)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/beeple-3.jpg" alt="Human One (2021)" onerror="this.remove()"></div><figcaption>Human One (2021)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/beeple-4.jpg" alt="Crossroad (2020)" onerror="this.remove()"></div><figcaption>Crossroad (2020)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="imagenes/hockney-1.jpg" alt="David Hockney" onerror="this.remove()"></div>
+            <span class="etiqueta">Reino Unido</span>
+            <h3>David Hockney</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>David Hockney</h3>
+            <h4>¿Quién es?</h4>
+            <p>Pintor inglés nacido en Bradford en 1937 y fallecido en Londres en 2026. Fue uno de los artistas británicos más influyentes de su época.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Se mudó a Los Ángeles y pintó piscinas de California con colores planos y muy saturados. Ya en el siglo XXI creó paisajes en un iPad.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="imagenes/hockney-1.jpg" alt="A Bigger Splash (1967)" onerror="this.remove()"></div><figcaption>A Bigger Splash (1967)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/hockney-2.jpg" alt="A Year in Normandie (2021), un friso de unos 90 metros" onerror="this.remove()"></div><figcaption>A Year in Normandie (2021), un friso de unos 90 metros</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/hockney-3.jpg" alt="Portrait of an Artist (Pool with Two Figures) (1972)" onerror="this.remove()"></div><figcaption>Portrait of an Artist (Pool with Two Figures) (1972)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/hockney-4.jpg" alt="Mr and Mrs Clark and Percy (1970–1971)" onerror="this.remove()"></div><figcaption>Mr and Mrs Clark and Percy (1970–1971)</figcaption></figure>
             </div>
           </div>
         </article>
@@ -193,60 +227,88 @@
 
         <article class="artista">
           <div class="flota">
-            <div class="imagen"></div>
+            <div class="imagen"><img src="imagenes/kapoor-1.jpg" alt="Anish Kapoor" onerror="this.remove()"></div>
             <span class="etiqueta">Reino Unido</span>
             <h3>Anish Kapoor</h3>
           </div>
           <div class="detalle" hidden>
             <h3>Anish Kapoor</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es.</p>
+            <p>Escultor británico nacido en Bombay (hoy Mumbai, India) el 12 de marzo de 1954. Vive y trabaja en Londres.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué tipo de obras crea.</p>
+            <p>Crea esculturas abstractas de gran tamaño, con superficies pulidas que reflejan el entorno y a quien las mira. Es famoso por haber conseguido derechos exclusivos para usar el pigmento Vantablack.</p>
             <h4>Obras</h4>
             <div class="obras">
-              <figure><div class="imagen"></div><figcaption>Cloud Gate</figcaption></figure>
-              <figure><div class="imagen"></div><figcaption>Nombre de otra obra</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kapoor-1.jpg" alt="Cloud Gate, El Frijol (Chicago, 2004–2006)" onerror="this.remove()"></div><figcaption>Cloud Gate, "El Frijol" (Chicago, 2004–2006)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kapoor-2.jpg" alt="Orbit (Parque Olímpico de Londres, 2012)" onerror="this.remove()"></div><figcaption>Orbit (Parque Olímpico de Londres, 2012)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kapoor-3.jpg" alt="Marsyas (Tate Modern, 2002)" onerror="this.remove()"></div><figcaption>Marsyas (Tate Modern, 2002)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kapoor-4.jpg" alt="Sky Mirror (2006)" onerror="this.remove()"></div><figcaption>Sky Mirror (2006)</figcaption></figure>
             </div>
           </div>
         </article>
 
         <article class="artista">
           <div class="flota">
-            <div class="imagen"></div>
+            <div class="imagen"><img src="imagenes/gormley-1.jpg" alt="Antony Gormley" onerror="this.remove()"></div>
             <span class="etiqueta">Reino Unido</span>
             <h3>Antony Gormley</h3>
           </div>
           <div class="detalle" hidden>
             <h3>Antony Gormley</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es.</p>
+            <p>Escultor británico nacido en Londres el 30 de agosto de 1950.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué tipo de obras crea.</p>
+            <p>Investiga la relación del cuerpo humano con el espacio. Sus figuras suelen partir de moldes de su propio cuerpo.</p>
             <h4>Obras</h4>
             <div class="obras">
-              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
-              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/gormley-1.jpg" alt="Angel of the North (Gateshead, 1998), de acero y 20 metros de alto" onerror="this.remove()"></div><figcaption>Angel of the North (Gateshead, 1998), de acero y 20 metros de alto</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/gormley-2.jpg" alt="Another Place (Crosby Beach), 100 figuras de hierro mirando al mar" onerror="this.remove()"></div><figcaption>Another Place (Crosby Beach), 100 figuras de hierro mirando al mar</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/gormley-3.jpg" alt="Event Horizon (Londres, 2007)" onerror="this.remove()"></div><figcaption>Event Horizon (Londres, 2007)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/gormley-4.jpg" alt="Field for the British Isles (1993)" onerror="this.remove()"></div><figcaption>Field for the British Isles (1993)</figcaption></figure>
             </div>
           </div>
         </article>
 
         <article class="artista">
           <div class="flota">
-            <div class="imagen"></div>
+            <div class="imagen"><img src="imagenes/kusama-1.jpg" alt="Yayoi Kusama" onerror="this.remove()"></div>
             <span class="etiqueta">Japón</span>
             <h3>Yayoi Kusama</h3>
           </div>
           <div class="detalle" hidden>
             <h3>Yayoi Kusama</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es.</p>
+            <p>Artista japonesa nacida el 22 de marzo de 1929 en Matsumoto. Murió en 2026, a los 97 años.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué tipo de obras crea.</p>
+            <p>Es famosa por sus lunares, sus infinity nets y sus salas de espejos infinitos. Cuenta que desde niña veía campos de puntos, y eso marcó su obra. También pintó y esculpió calabazas.</p>
             <h4>Obras</h4>
             <div class="obras">
-              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
-              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kusama-1.jpg" alt="Infinity Mirror Room—Phalli's Field (1965)" onerror="this.remove()"></div><figcaption>Infinity Mirror Room—Phalli's Field (1965)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kusama-2.jpg" alt="Yellow Pumpkin (Naoshima, Japón)" onerror="this.remove()"></div><figcaption>Yellow Pumpkin (Naoshima, Japón)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kusama-3.jpg" alt="Mirror Room (Pumpkin), Bienal de Venecia (1993)" onerror="this.remove()"></div><figcaption>Mirror Room (Pumpkin), Bienal de Venecia (1993)</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/kusama-4.jpg" alt="Infinity Mirrored Room – The Souls of Millions of Light Years Away (2013)" onerror="this.remove()"></div><figcaption>Infinity Mirrored Room – The Souls of Millions of Light Years Away (2013)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="imagenes/salcedo-1.jpg" alt="Doris Salcedo" onerror="this.remove()"></div>
+            <span class="etiqueta">Colombia</span>
+            <h3>Doris Salcedo</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Doris Salcedo</h3>
+            <h4>¿Quién es?</h4>
+            <p>Artista colombiana nacida en Bogotá en 1958, donde sigue viviendo y trabajando. Fue la primera colombiana en recibir el Praemium Imperiale.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Sus esculturas e instalaciones hablan de memoria, pérdida y violencia. Transforma objetos cotidianos, como muebles y ropa, en obras sobre las víctimas del conflicto.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="imagenes/salcedo-1.jpg" alt="Shibboleth (Tate Modern, 2007), una grieta de 167 metros en el piso" onerror="this.remove()"></div><figcaption>Shibboleth (Tate Modern, 2007), una grieta de 167 metros en el piso</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/salcedo-2.jpg" alt="Fragmentos (Bogotá, 2018), un piso hecho con el metal fundido de armas" onerror="this.remove()"></div><figcaption>Fragmentos (Bogotá, 2018), un piso hecho con el metal fundido de armas</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/salcedo-3.jpg" alt="Acción de duelo (Bogotá, 2007), 24.000 velas en la plaza principal" onerror="this.remove()"></div><figcaption>Acción de duelo (Bogotá, 2007), 24.000 velas en la plaza principal</figcaption></figure>
+              <figure><div class="imagen"><img src="imagenes/salcedo-4.jpg" alt="Noviembre 6 y 7 (2002)" onerror="this.remove()"></div><figcaption>Noviembre 6 y 7 (2002)</figcaption></figure>
             </div>
           </div>
         </article>
@@ -307,6 +369,26 @@
         <article class="artista">
           <div class="flota">
             <div class="imagen"></div>
+            <span class="etiqueta">Estados Unidos</span>
+            <h3>Alvin Ailey American Dance Theater</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Alvin Ailey American Dance Theater</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre la compañía.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí qué hace.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre del espectáculo</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre del espectáculo</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
             <span class="etiqueta">Panamá</span>
             <h3>Ballet Nacional de Panamá</h3>
           </div>
@@ -346,9 +428,9 @@
           <div class="detalle" hidden>
             <h3>Ericka Franco</h3>
             <h4>¿Quién es?</h4>
-            <p>Escribe aquí quién es Ericka Franco (busca su información en fuentes confiables).</p>
+            <p>Escribe aquí quién es Ericka Franco.</p>
             <h4>¿Qué hace?</h4>
-            <p>Escribe aquí qué hace. Dato encontrado: colaboró en 2021 en una tienda de accesorios inspirados en el folclore panameño.</p>
+            <p>Escribe aquí qué hace.</p>
             <h4>Obras</h4>
             <div class="obras">
               <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
@@ -380,7 +462,7 @@
         <article class="artista">
           <div class="flota">
             <div class="imagen"></div>
-            <span class="etiqueta">Ocú, Coclé</span>
+            <span class="etiqueta">La Pintada, Coclé</span>
             <h3>Sombrero pintao</h3>
           </div>
           <div class="detalle" hidden>
@@ -397,10 +479,45 @@
           </div>
         </article>
 
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Darién</span>
+            <h3>Cestería emberá y wounaan</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Cestería emberá y wounaan</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre las comunidades.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí cómo se elaboran.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
       </div>
       <button class="flecha next" aria-label="Siguiente">▶</button>
     </div>
     <div class="panel"><p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p></div>
+  </section>
+
+  <!-- FUENTES -->
+  <section class="fuentes">
+    <h2>Fuentes</h2>
+    <div class="lista-fuentes">
+      <p><strong>Banksy:</strong> <a href="https://www.britannica.com/biography/Banksy">Britannica</a>, <a href="https://ocula.com/artists/banksy/gazelli-art-house/">Ocula</a></p>
+      <p><strong>Takashi Murakami:</strong> <a href="https://www.artnet.com/artists/takashi-murakami/15">Artnet</a>, <a href="https://www.britannica.com/print/article/1107655">Britannica</a></p>
+      <p><strong>Beeple:</strong> <a href="https://www.smithsonianmag.com/smart-news/entirely-digital-artwork-just-sold-major-auction-first-time-180977039/">Smithsonian</a>, <a href="https://www.nbcnews.com/business/business-news/digital-artwork-sells-record-60-million-christie-s-first-nft-n1260544">NBC News</a></p>
+      <p><strong>David Hockney:</strong> <a href="https://www.nationalgalleries.org/art-and-artists/artists/David-Hockney">National Galleries Scotland</a>, <a href="https://artreview.com/david-hockney-giant-of-british-art-1937-2026/">ArtReview</a></p>
+      <p><strong>Anish Kapoor:</strong> <a href="https://www.britannica.com/print/article/1076246">Britannica</a>, <a href="https://www.genesisprize.org/honorees/laureate-2017/biography">Genesis Prize</a></p>
+      <p><strong>Antony Gormley:</strong> <a href="https://www.britannica.com/print/article/1582114">Britannica</a>, <a href="https://ocula.com/artists/antony-gormley/dellasposa/">Ocula</a></p>
+      <p><strong>Yayoi Kusama:</strong> <a href="https://www.britannica.com/biography/Yayoi-Kusama/article-history">Britannica</a>, <a href="https://wnyc.org/npr/1102916697">NPR/WNYC</a></p>
+      <p><strong>Doris Salcedo:</strong> <a href="https://praemiumimperiale.org/en/laureate/salcedo">Praemium Imperiale</a>, <a href="https://sharjahart.org/sharjah-art-foundation/people/doris-salcedo">Sharjah Art Foundation</a></p>
+    </div>
   </section>
 
   <footer>Lumina · Museo de las Artes</footer>
