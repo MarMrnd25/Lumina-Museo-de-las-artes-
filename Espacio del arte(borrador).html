@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rincón del Arte - Lumina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --guinda: #6b2737;
+      --crema: #f5efe6;
+      --beige: #e3d9c6;
+      --rosa: #c98f94;
+      --texto: #4a3236;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--crema); color: var(--texto); font-family: Georgia, serif; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Cinzel', Georgia, serif; color: var(--guinda); text-transform: uppercase; margin: 0 0 12px; }
+
+    /* MENÚ */
+    .barra { background: var(--guinda); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 6vw; flex-wrap: wrap; gap: 10px; }
+    .logo { font-family: 'Cinzel', Georgia, serif; font-size: 1.2rem; font-weight: 700; }
+    .logo small { font-family: Georgia, serif; font-size: 0.75rem; font-weight: normal; margin-left: 8px; }
+    .barra nav a { color: #fff; text-decoration: none; margin-left: 8px; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
+    .barra nav a:hover { background: rgba(255,255,255,0.15); }
+    .barra nav a.activo { background: var(--rosa); color: var(--guinda); }
+
+    /* PORTADA */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 60px 6vw; }
+    .hero h1 { font-size: 2.4rem; }
+    .boton { display: inline-block; background: var(--guinda); color: #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; }
+    .boton:hover { opacity: 0.85; }
+
+    /* RECUADRO DE IMAGEN (con la X; se reemplaza por <img>) */
+    .imagen { width: 100%; aspect-ratio: 4 / 3; border: 2px solid var(--rosa); border-radius: 6px; overflow: hidden;
+      background:
+        linear-gradient(to top right, transparent calc(50% - 1px), var(--rosa) 50%, transparent calc(50% + 1px)),
+        linear-gradient(to bottom right, transparent calc(50% - 1px), var(--rosa) 50%, transparent calc(50% + 1px)),
+        var(--beige); }
+    .imagen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* SECCIONES */
+    .seccion { padding: 30px 6vw 20px; }
+
+    /* CARRUSEL CIRCULAR (flechas pegadas al carrusel) */
+    .carrusel { display: flex; align-items: center; justify-content: center; gap: 10px; max-width: 820px; margin: 0 auto; }
+    .escenario { position: relative; flex: 1; max-width: 700px; height: 520px; perspective: 1200px; overflow: hidden; }
+    .flecha { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--guinda); color: #fff; font-size: 1.1rem; cursor: pointer; z-index: 20; }
+    .flecha:hover { opacity: 0.85; }
+
+    .artista { position: absolute; top: 40px; left: 50%; width: 270px; cursor: pointer; will-change: transform; }
+
+    /* La tarjeta blanca que flota */
+    .flota { position: relative; background: #fff; padding: 14px 14px 18px; border-radius: 6px;
+      box-shadow: 0 18px 35px rgba(60,20,30,0.28); animation: flotar 4s ease-in-out infinite; }
+    .artista:nth-child(2) .flota { animation-delay: -1.3s; }
+    .artista:nth-child(3) .flota { animation-delay: -2.6s; }
+    .artista:nth-child(4) .flota { animation-delay: -3.2s; }
+    @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .flota .imagen { aspect-ratio: 4 / 5; }
+    .etiqueta { display: inline-block; background: #b5a597; color: #fff; font-size: 0.75rem; padding: 2px 10px; border-radius: 4px; margin-top: 12px; }
+    .flota h3 { font-size: 1.05rem; margin: 6px 0 0; text-transform: none; font-family: Georgia, serif; color: var(--texto); font-weight: normal; }
+
+    /* Manita de "haz clic" (solo en la tarjeta del frente) */
+    .artista.central .flota::after { content: "👆"; position: absolute; right: 22px; bottom: 70px; font-size: 2rem; animation: toque 1.6s ease-in-out infinite; }
+    @keyframes toque { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-4px, -6px); } }
+
+    /* PANEL DE INFORMACIÓN */
+    .panel { position: relative; background: #fff; border: 2px solid var(--rosa); border-radius: 8px; padding: 24px; margin-top: 16px; }
+    .panel h3 { padding-right: 110px; }
+    .cerrar { position: absolute; top: 14px; right: 14px; background: var(--guinda); color: #fff; border: none; border-radius: 20px; padding: 6px 14px; font-family: Georgia, serif; font-size: 0.85rem; cursor: pointer; }
+    .cerrar:hover { opacity: 0.85; }
+    .panel h4 { font-family: 'Cinzel', Georgia, serif; color: var(--guinda); margin: 18px 0 4px; text-transform: uppercase; }
+    .panel .aviso { margin: 0; color: #8a7075; font-style: italic; }
+    .obras { display: flex; gap: 24px; flex-wrap: wrap; }
+    .obras figure { margin: 0; width: 200px; }
+    .obras figcaption { font-size: 0.9rem; margin-top: 8px; text-align: center; line-height: 1.4; overflow-wrap: break-word; }
+
+    footer { background: var(--guinda); color: #fff; text-align: center; padding: 24px; font-size: 0.9rem; margin-top: 40px; }
+
+    /* FUENTES */
+    .fuentes { padding: 30px 6vw 10px; max-width: 1000px; margin: 0 auto; }
+    .fuentes p { margin: 6px 0; font-size: 0.9rem; }
+    .fuentes a { color: var(--guinda); }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .artista { width: 200px; }
+      .escenario { height: 440px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MENÚ (igual en todas las páginas del museo) -->
+  <header class="barra">
+    <div class="logo">Lumina <small>Museo de las Artes</small></div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="musica.html">Música</a>
+      <a href="espacio-del-arte.html" class="activo">Arte</a>
+      <a href="moda.html">Moda</a>
+      <a href="cine.html">Cine</a>
+      <a href="redes.html">Redes</a>
+      <a href="nosotros.html">Nosotros</a>
+    </nav>
+  </header>
+
+  <!-- PORTADA -->
+  <section class="hero">
+    <div>
+      <h1>Rincón del Arte</h1>
+      <p>Donde el arte va más allá del lienzo...</p>
+      <a href="#pintura" class="boton">Entrar a la sala</a>
+    </div>
+    <div class="imagen">
+      <!-- <img src="imagenes/portada-arte.jpg" alt="Descripción"> -->
+    </div>
+  </section>
+
+  <!-- ===================== PINTURA ===================== -->
+  <section class="seccion" id="pintura">
+    <h2>Pintura</h2>
+    <div class="carrusel">
+      <button class="flecha prev" aria-label="Anterior">◀</button>
+      <div class="escenario">
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXrvM17k0CPSeJ-3P5JKFLeN6ZFlKVbgU-r__Dm2kp5IzoNn6D4E021Ec0&s=10" alt="Banksy" onerror="this.remove()"></div>
+            <span class="etiqueta">Reino Unido</span>
+            <h3>Banksy</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Banksy</h3>
+            <h4>¿Quién es?</h4>
+            <p>Artista callejero británico que usa un seudónimo. Su identidad real nunca se ha confirmado; se cree que nació en Bristol o cerca de allí, hacia 1974.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Se hizo famoso a finales de los años 90 con plantillas (stencils) llenas de ironía y crítica social. En 2005 colgó obras suyas, disfrazado, en museos como el Met de Nueva York y la Tate Britain de Londres.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Dismaland7.jpg/960px-Dismaland7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail" alt="Dismaland (2015), parque temático crítico en Reino Unido" onerror="this.remove()"></div><figcaption>Dismaland (2015), parque temático crítico en Reino Unido</figcaption></figure>
+              <figure><div class="imagen"><img src="https://external-preview.redd.it/banksy-puts-up-a-new-piece-in-la-better-out-than-in-looks-v0-5BSkMxHEvclkd3SnJiJftDJcNuTbRHSRIbswqCuBwtk.jpeg?auto=webp&s=6933b8dbca5135e28576883587595859bc8fe696" alt="Better Out Than In (Nueva York, 2013)" onerror="this.remove()"></div><figcaption>Better Out Than In (Nueva York, 2013)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://uk.bimago.media/media/catalog/image/view/product/136442/role/image/size/1500x2240/type/base/161b9d384e40f4aad88911c0ae5cf2d6.webp" alt="Girl with Balloon (hacia 2002)" onerror="this.remove()"></div><figcaption>Girl with Balloon (hacia 2002)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://upload.wikimedia.org/wikipedia/en/f/fe/Love_is_in_the_Bin.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Love Is in the Bin (2018), obra parcialmente destruida en una subasta" onerror="this.remove()"></div><figcaption>Love Is in the Bin (2018), obra parcialmente destruida en una subasta</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://www.singulart.com/blog/wp-content/uploads/2023/12/Takashi-Murakami-1024x576.jpg" alt="Takashi Murakami" onerror="this.remove()"></div>
+            <span class="etiqueta">Japón</span>
+            <h3>Takashi Murakami</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Takashi Murakami</h3>
+            <h4>¿Quién es?</h4>
+            <p>Artista japonés nacido el 1 de febrero de 1962 en Tokio. Fundó Kaikai Kiki, una empresa que produce y representa a artistas.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Es el creador del estilo Superflat, que mezcla el arte tradicional japonés con la cultura pop, como el manga y el anime. También ha colaborado con Louis Vuitton y con músicos como Kanye West.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://i.etsystatic.com/48752971/r/il/3a1cee/6548849444/il_fullxfull.6548849444_n7b8.jpg" alt="Mr. DOB (personaje)" onerror="this.remove()"></div><figcaption>Mr. DOB (personaje)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://d7hftxdivxxvm.cloudfront.net/?height=445&quality=85&resize_to=fill&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FU-G-2FRqc-3Ii1sbylrO5g%2Flarger.jpg&width=445" alt="And Then, And Then And Then And Then And Then (1996–1997)" onerror="this.remove()"></div><figcaption>And Then, And Then And Then And Then And Then (1996–1997)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://zarastro.art/wp-content/uploads/2023/08/Takashi-Murakami-The-future-will-be-full-of-smiles-for-sure-FIAC-Paris-2013.-Photo-by-bflv.webp" alt="Flowers (flores sonrientes)" onerror="this.remove()"></div><figcaption>Flowers (flores sonrientes)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjZiHsg9vNUrZjL-gbe56mFCYV_fyUoG18cWxsoPX_Z6uDAunfsyAyPfo&s=10" alt="Tan Tan Bo Puking – a.k.a. Gero Tan (2002)" onerror="this.remove()"></div><figcaption>Tan Tan Bo Puking – a.k.a. Gero Tan (2002)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/05/b960fb_3a05ae9603aa478bbc1f4cb060becf6bmv2.jpg?fit=1568%2C1568&quality=89&ssl=1" alt="Beeple" onerror="this.remove()"></div>
+            <span class="etiqueta">Estados Unidos</span>
+            <h3>Beeple</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Beeple</h3>
+            <h4>¿Quién es?</h4>
+            <p>Su nombre real es Mike Winkelmann. Es un diseñador gráfico estadounidense y uno de los artistas digitales más conocidos del mundo.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Creó y publicó una imagen digital cada día, desde el 1 de mayo de 2007 hasta el 7 de enero de 2021. Ha trabajado con marcas y artistas como Louis Vuitton, Katy Perry y Nike.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://beeple-crap.com/media/6b8fb0ac5fa8d078e1c4-display.webp" alt="Everydays: The First 5000 Days (2021), vendida en Christie's por unos 69,3 millones de dólares" onerror="this.remove()"></div><figcaption>Everydays: The First 5000 Days (2021), vendida en Christie's por unos 69,3 millones de dólares</figcaption></figure>
+              <figure><div class="imagen"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRe9S-6m40NapVOu7diFG5E36iYzVwe1Dl0s5rGlekL5B_G3Dou" alt="El primer Everyday (1 de mayo de 2007)" onerror="this.remove()"></div><figcaption>El primer Everyday (1 de mayo de 2007)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://human-one.xyz/images/pdf/page02_img02.jpeg" alt="Human One (2021)" onerror="this.remove()"></div><figcaption>Human One (2021)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://zupimages.net/up/22/15/5c7m.jpg" alt="Crossroad (2020)" onerror="this.remove()"></div><figcaption>Crossroad (2020)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://a.storyblok.com/f/119968/1080x1920/01c6d4ff12/artistsartist_davidhockney.jpg" alt="David Hockney" onerror="this.remove()"></div>
+            <span class="etiqueta">Reino Unido</span>
+            <h3>David Hockney</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>David Hockney</h3>
+            <h4>¿Quién es?</h4>
+            <p>Pintor inglés nacido en Bradford en 1937 y fallecido en Londres en 2026. Fue uno de los artistas británicos más influyentes de su época.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Se mudó a Los Ángeles y pintó piscinas de California con colores planos y muy saturados. Ya en el siglo XXI creó paisajes en un iPad.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvMTAwODMwOTQ0XzQxOWQwNjdjZTVfby5wbmciLCJyZXNpemUsMjAwMCwyMDAwIl19.Y6AChfvuP5xi_rCIAhZTpR18Sgmq7xLsOb6jQKQ_Mgk.png" alt="A Bigger Splash (1967)" onerror="this.remove()"></div><figcaption>A Bigger Splash (1967)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://medias.slash-paris.com/main_images/images/000/013/470/david_hockney_bayeux-1_large.jpg?1663923188" alt="A Year in Normandie (2021), un friso de unos 90 metros" onerror="this.remove()"></div><figcaption>A Year in Normandie (2021), un friso de unos 90 metros</figcaption></figure>
+              <figure><div class="imagen"><img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Hockney_Pool_Figures.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Portrait of an Artist (Pool with Two Figures) (1972)" onerror="this.remove()"></div><figcaption>Portrait of an Artist (Pool with Two Figures) (1972)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://mydailyartdisplay.uk/wp-content/uploads/2011/06/mr-and-mrs-clark-by-david-hockney.jpg?w=840" alt="Mr and Mrs Clark and Percy (1970–1971)" onerror="this.remove()"></div><figcaption>Mr and Mrs Clark and Percy (1970–1971)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="flecha next" aria-label="Siguiente">▶</button>
+    </div>
+    <div class="panel"><p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p></div>
+  </section>
+
+  <!-- ===================== ESCULTURA ===================== -->
+  <section class="seccion" id="escultura">
+    <h2>Escultura</h2>
+    <div class="carrusel">
+      <button class="flecha prev" aria-label="Anterior">◀</button>
+      <div class="escenario">
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxYiLBc0fSHBlXT1q2M-ISVkhpvOwdHKSAIqupqYGMNDAFj7K2HYN40Eg&s=10" alt="Anish Kapoor" onerror="this.remove()"></div>
+            <span class="etiqueta">Reino Unido</span>
+            <h3>Anish Kapoor</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Anish Kapoor</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escultor británico nacido en Bombay (hoy Mumbai, India) el 12 de marzo de 1954. Vive y trabaja en Londres.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Crea esculturas abstractas de gran tamaño, con superficies pulidas que reflejan el entorno y a quien las mira. Es famoso por haber conseguido derechos exclusivos para usar el pigmento Vantablack.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://www.singulart.com/blog/wp-content/uploads/2024/04/Cloud-Gate-1.jpg" alt="Cloud Gate, El Frijol (Chicago, 2004–2006)" onerror="this.remove()"></div><figcaption>Cloud Gate, "El Frijol" (Chicago, 2004–2006)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://i.guim.co.uk/img/static/sys-images/Observer/Pix/pictures/2012/5/3/1336059173065/orbit-008.jpg?width=465&dpr=1&s=none&crop=none" alt="Orbit (Parque Olímpico de Londres, 2012)" onerror="this.remove()"></div><figcaption>Orbit (Parque Olímpico de Londres, 2012)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://i.pinimg.com/736x/8d/28/be/8d28bef1be05b90639b10a845f883e4d.jpg" alt="Marsyas (Tate Modern, 2002)" onerror="this.remove()"></div><figcaption>Marsyas (Tate Modern, 2002)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://lisson-art.s3.amazonaws.com/uploads/attachment/image/body/15375/AK_0085.jpeg" alt="Sky Mirror (2006)" onerror="this.remove()"></div><figcaption>Sky Mirror (2006)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Sir_Antony_Mark_David_Gormley_%282024%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Antony Gormley" onerror="this.remove()"></div>
+            <span class="etiqueta">Reino Unido</span>
+            <h3>Antony Gormley</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Antony Gormley</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escultor británico nacido en Londres el 30 de agosto de 1950.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Investiga la relación del cuerpo humano con el espacio. Sus figuras suelen partir de moldes de su propio cuerpo.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://cdn.britannica.com/38/142538-050-8A35A6AF/Angel-of-the-North-sculpture-Antony-Gormley-1998.jpg" alt="Angel of the North (Gateshead, 1998), de acero y 20 metros de alto" onerror="this.remove()"></div><figcaption>Angel of the North (Gateshead, 1998), de acero y 20 metros de alto</figcaption></figure>
+              <figure><div class="imagen"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/6f/6f/f9/10-another-place-crosby.jpg?w=1200&h=-1&s=1" alt="Another Place (Crosby Beach), 100 figuras de hierro mirando al mar" onerror="this.remove()"></div><figcaption>Another Place (Crosby Beach), 100 figuras de hierro mirando al mar</figcaption></figure>
+              <figure><div class="imagen"><img src="https://i.guim.co.uk/img/static/Arts/gallery/2007/may/03/art/4-4769.jpg?width=700&quality=85&auto=format&fit=max&s=69d6dbb17513dff90295a9af7f4decfb" alt="Event Horizon (Londres, 2007)" onerror="this.remove()"></div><figcaption>Event Horizon (Londres, 2007)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://publicdelivery.org/wp-content/uploads/2019/07/Antony-Gormley-Field-for-the-British-Isles-1993-terracotta-variable-size-approx.-40-000-elements-each-8-26-cm-tall-Installation-view-Roman-House-Colchester-1999.jpg" alt="Field for the British Isles (1993)" onerror="this.remove()"></div><figcaption>Field for the British Isles (1993)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEWJZy3YtXxsWbq9_Xzo3Yp7RdNxz86Ta45Fzrj4EntrVAkd0AaSlYmus&s=10" alt="Yayoi Kusama" onerror="this.remove()"></div>
+            <span class="etiqueta">Japón</span>
+            <h3>Yayoi Kusama</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Yayoi Kusama</h3>
+            <h4>¿Quién es?</h4>
+            <p>Artista japonesa nacida el 22 de marzo de 1929 en Matsumoto. Murió en 2026, a los 97 años.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Es famosa por sus lunares, sus infinity nets y sus salas de espejos infinitos. Cuenta que desde niña veía campos de puntos, y eso marcó su obra. También pintó y esculpió calabazas.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://cdn.sanity.io/images/cxgd3urn/production/94179c61f678ad6bcc7410943e1092b1c68249c3-1595x1600.jpg?rect=131,582,1335,801&w=1200&h=720&q=85&fit=crop&auto=format" alt="Infinity Mirror Room—Phalli's Field (1965)" onerror="this.remove()"></div><figcaption>Infinity Mirror Room—Phalli's Field (1965)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F08%2Fyayoi-kusama-yellow-pumpkin-washed-away-seto-island-japan-typhoon-lupit-TW.jpg?cbr=1&q=90&w=1200&h=630&fit=crop" alt="Yellow Pumpkin (Naoshima, Japón)" onerror="this.remove()"></div><figcaption>Yellow Pumpkin (Naoshima, Japón)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://media-icamiami-org.imgix.net/2019/09/9b064c67-yayoi-kusama-all-the-eternal-love-i-have-for-the-pumpkins-detail-2016.jpg?auto=compress,format&cs=srgb" alt="Mirror Room (Pumpkin), Bienal de Venecia (1993)" onerror="this.remove()"></div><figcaption>Mirror Room (Pumpkin), Bienal de Venecia (1993)</figcaption></figure>
+              <figure><div class="imagen"><img src="https://www.thebroad.org/sites/default/files/styles/webp_convert_only/public/art/kusama_the_souls_of_millions_1.jpg.webp?itok=HbMUpAqp" alt="Infinity Mirrored Room – The Souls of Millions of Light Years Away (2013)" onerror="this.remove()"></div><figcaption>Infinity Mirrored Room – The Souls of Millions of Light Years Away (2013)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/GUGG_Doris_Salcedo.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Doris Salcedo" onerror="this.remove()"></div>
+            <span class="etiqueta">Colombia</span>
+            <h3>Doris Salcedo</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Doris Salcedo</h3>
+            <h4>¿Quién es?</h4>
+            <p>Artista colombiana nacida en Bogotá en 1958, donde sigue viviendo y trabajando. Fue la primera colombiana en recibir el Praemium Imperiale.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Sus esculturas e instalaciones hablan de memoria, pérdida y violencia. Transforma objetos cotidianos, como muebles y ropa, en obras sobre las víctimas del conflicto.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"><img src="https://radiopapesse.org/img/images/Doris_Salcedo_Shibboleth_Tate_Modern_B_550.jpg" alt="Shibboleth (Tate Modern, 2007), una grieta de 167 metros en el piso" onerror="this.remove()"></div><figcaption>Shibboleth (Tate Modern, 2007), una grieta de 167 metros en el piso</figcaption></figure>
+              <figure><div class="imagen"><img src="https://cerosetenta.uniandes.edu.co/wp-content/uploads/2018/12/fragmentosPORTADA.png" alt="Fragmentos (Bogotá, 2018), un piso hecho con el metal fundido de armas" onerror="this.remove()"></div><figcaption>Fragmentos (Bogotá, 2018), un piso hecho con el metal fundido de armas</figcaption></figure>
+              <figure><div class="imagen"><img src="https://conchamayordomo.com/wp-content/uploads/2016/11/Doris-Salcedo-Acci%C3%B3n-de-duelo-2007.jpg" alt="Acción de duelo (Bogotá, 2007), 24.000 velas en la plaza principal" onerror="this.remove()"></div><figcaption>Acción de duelo (Bogotá, 2007), 24.000 velas en la plaza principal</figcaption></figure>
+              <figure><div class="imagen"><img src="https://i0.wp.com/artwithapurposeblog.wordpress.com/wp-content/uploads/2016/10/tumblr_ml08dh7n3x1qb2a97o1_1280.jpg?fit=1200%2C675&ssl=1" alt="Noviembre 6 y 7 (2002)" onerror="this.remove()"></div><figcaption>Noviembre 6 y 7 (2002)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="flecha next" aria-label="Siguiente">▶</button>
+    </div>
+    <div class="panel"><p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p></div>
+  </section>
+
+  <!-- ===================== DANZA ===================== -->
+  <section class="seccion" id="danza">
+    <h2>Danza</h2>
+    <div class="carrusel">
+      <button class="flecha prev" aria-label="Anterior">◀</button>
+      <div class="escenario">
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Reino Unido</span>
+            <h3>Akram Khan</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Akram Khan</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí quién es.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí qué hace.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Canadá</span>
+            <h3>Crystal Pite</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Crystal Pite</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí quién es.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí qué hace.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la obra</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Estados Unidos</span>
+            <h3>Alvin Ailey American Dance Theater</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Alvin Ailey American Dance Theater</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre la compañía.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí qué hace.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre del espectáculo</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre del espectáculo</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Panamá</span>
+            <h3>Ballet Nacional de Panamá</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Ballet Nacional de Panamá</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre la compañía.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí qué hace.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre del espectáculo</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre del espectáculo</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="flecha next" aria-label="Siguiente">▶</button>
+    </div>
+    <div class="panel"><p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p></div>
+  </section>
+
+  <!-- ===================== ARTESANÍA NACIONAL ===================== -->
+  <section class="seccion" id="artesania">
+    <h2>Artesanía nacional</h2>
+    <div class="carrusel">
+      <button class="flecha prev" aria-label="Anterior">◀</button>
+      <div class="escenario">
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Panamá</span>
+            <h3>Ericka Franco</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Ericka Franco</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí quién es Ericka Franco.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí qué hace.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Guna Yala</span>
+            <h3>Molas guna</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Molas guna</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre la comunidad que las crea.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí cómo se elaboran.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">La Pintada, Coclé</span>
+            <h3>Sombrero pintao</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Sombrero pintao</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre quienes lo tejen.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí cómo se teje.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="artista">
+          <div class="flota">
+            <div class="imagen"></div>
+            <span class="etiqueta">Darién</span>
+            <h3>Cestería emberá y wounaan</h3>
+          </div>
+          <div class="detalle" hidden>
+            <h3>Cestería emberá y wounaan</h3>
+            <h4>¿Quién es?</h4>
+            <p>Escribe aquí sobre las comunidades.</p>
+            <h4>¿Qué hace?</h4>
+            <p>Escribe aquí cómo se elaboran.</p>
+            <h4>Obras</h4>
+            <div class="obras">
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+              <figure><div class="imagen"></div><figcaption>Nombre de la pieza</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="flecha next" aria-label="Siguiente">▶</button>
+    </div>
+    <div class="panel"><p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p></div>
+  </section>
+
+  <!-- FUENTES -->
+  <section class="fuentes">
+    <h2>Fuentes</h2>
+    <div class="lista-fuentes">
+      <p><strong>Banksy:</strong> <a href="https://www.britannica.com/biography/Banksy">Britannica</a>, <a href="https://ocula.com/artists/banksy/gazelli-art-house/">Ocula</a></p>
+      <p><strong>Takashi Murakami:</strong> <a href="https://www.artnet.com/artists/takashi-murakami/15">Artnet</a>, <a href="https://www.britannica.com/print/article/1107655">Britannica</a></p>
+      <p><strong>Beeple:</strong> <a href="https://www.smithsonianmag.com/smart-news/entirely-digital-artwork-just-sold-major-auction-first-time-180977039/">Smithsonian</a>, <a href="https://www.nbcnews.com/business/business-news/digital-artwork-sells-record-60-million-christie-s-first-nft-n1260544">NBC News</a></p>
+      <p><strong>David Hockney:</strong> <a href="https://www.nationalgalleries.org/art-and-artists/artists/David-Hockney">National Galleries Scotland</a>, <a href="https://artreview.com/david-hockney-giant-of-british-art-1937-2026/">ArtReview</a></p>
+      <p><strong>Anish Kapoor:</strong> <a href="https://www.britannica.com/print/article/1076246">Britannica</a>, <a href="https://www.genesisprize.org/honorees/laureate-2017/biography">Genesis Prize</a></p>
+      <p><strong>Antony Gormley:</strong> <a href="https://www.britannica.com/print/article/1582114">Britannica</a>, <a href="https://ocula.com/artists/antony-gormley/dellasposa/">Ocula</a></p>
+      <p><strong>Yayoi Kusama:</strong> <a href="https://www.britannica.com/biography/Yayoi-Kusama/article-history">Britannica</a>, <a href="https://wnyc.org/npr/1102916697">NPR/WNYC</a></p>
+      <p><strong>Doris Salcedo:</strong> <a href="https://praemiumimperiale.org/en/laureate/salcedo">Praemium Imperiale</a>, <a href="https://sharjahart.org/sharjah-art-foundation/people/doris-salcedo">Sharjah Art Foundation</a></p>
+    </div>
+  </section>
+
+  <footer>Lumina · Museo de las Artes</footer>
+
+  <!-- JAVASCRIPT: hace girar el carrusel en círculo -->
+  <script>
+    document.querySelectorAll('.seccion').forEach(function (seccion) {
+      var escenario = seccion.querySelector('.escenario');
+      var tarjetas = Array.from(seccion.querySelectorAll('.artista'));
+      var panel = seccion.querySelector('.panel');
+      var btnPrev = seccion.querySelector('.prev');
+      var btnNext = seccion.querySelector('.next');
+      var n = tarjetas.length;
+      var paso = 360 / n;     // grados que le tocan a cada tarjeta en el aro
+      var giro = 0;           // giro actual del aro (cambia mientras anima)
+      var objetivo = 0;       // giro al que queremos llegar
+      var animacion = null;
+
+      // Ángulo de la tarjeta i, entre -180 y 180 (0 = al frente)
+      function anguloDe(i, g) {
+        return ((i * paso + g) % 360 + 540) % 360 - 180;
+      }
+
+      // Coloca todas las tarjetas sobre el círculo
+      function dibujar(g) {
+        var radio = escenario.offsetWidth * 0.34;
+        tarjetas.forEach(function (t, i) {
+          var ang = (i * paso + g) * Math.PI / 180;
+          var s = Math.sin(ang);
+          var c = Math.cos(ang);
+          var prof = (c + 1) / 2;                    // 1 = frente, 0 = al fondo
+          var x = s * radio;                         // izquierda / derecha
+          var escala = 0.62 + 0.38 * prof;           // las del fondo se ven más pequeñas
+          var alto = (1 - prof) * -28;               // las del fondo se ven un poco más arriba
+          t.style.transform = 'translateX(calc(-50% + ' + x + 'px)) translateY(' + alto + 'px) rotateY(' + (-s * 32) + 'deg) scale(' + escala + ')';
+          t.style.zIndex = Math.round(prof * 100);
+          t.style.opacity = 0.45 + 0.55 * prof;
+        });
+      }
+
+      // Marca cuál tarjeta está al frente
+      function marcarCentral() {
+        tarjetas.forEach(function (t, i) {
+          t.classList.toggle('central', Math.abs(anguloDe(i, objetivo)) < 1);
+        });
+      }
+
+      // Anima el giro suavemente hasta el objetivo
+      function girarA(nuevo) {
+        objetivo = nuevo;
+        marcarCentral();
+        var inicio = giro;
+        var t0 = null;
+        if (animacion) cancelAnimationFrame(animacion);
+        function pasoAnim(t) {
+          if (t0 === null) t0 = t;
+          var p = Math.min(1, (t - t0) / 800);
+          var suave = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+          giro = inicio + (objetivo - inicio) * suave;
+          dibujar(giro);
+          if (p < 1) animacion = requestAnimationFrame(pasoAnim);
+        }
+        animacion = requestAnimationFrame(pasoAnim);
+      }
+
+      // Flechas: giran el aro una tarjeta (sin fin)
+      btnPrev.addEventListener('click', function () { girarA(objetivo + paso); });
+      btnNext.addEventListener('click', function () { girarA(objetivo - paso); });
+
+      // Clic en una tarjeta
+      tarjetas.forEach(function (t, i) {
+        t.addEventListener('click', function () {
+          var ang = anguloDe(i, objetivo);
+          if (Math.abs(ang) < 1) {
+                        panel.innerHTML = '<button class="cerrar" type="button" aria-label="Cerrar información">✕ Cerrar</button>' + t.querySelector('.detalle').innerHTML;  // la del frente muestra su info
+          } else {
+            girarA(objetivo - ang);                                   // las demás giran hasta el frente
+          }
+        });
+      });
+
+            // Botón "Cerrar": vuelve al mensaje inicial del panel
+      panel.addEventListener('click', function (e) {
+        if (e.target.closest('.cerrar')) {
+          panel.innerHTML = '<p class="aviso">Haz clic en la tarjeta del frente para conocer al artista.</p>';
+        }
+      });
+
+      window.addEventListener('resize', function () { dibujar(giro); });
+      marcarCentral();
+      dibujar(giro);
+    });
+  </script>
+
+</body>
+</html>
